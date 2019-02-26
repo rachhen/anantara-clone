@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import {
     View,
     Text,
-    StyleSheet
+    StyleSheet,
+    StatusBar
 } from "react-native";
 
 class MyStaysScreen extends Component {
@@ -12,6 +13,7 @@ class MyStaysScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar backgroundColor="blue" barStyle="light-content" />
                 <Text>MyStaysScreen</Text>
             </View>
         );
