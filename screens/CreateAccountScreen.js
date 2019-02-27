@@ -32,7 +32,10 @@ class CreateAccountScreen extends Component {
                             <Label>Address</Label>
                             <Input />
                         </Item>
-                        <DatePicker />
+                        <Item stackedLabel>
+                            <Label>Date Of Birth</Label>
+                            <DatePicker />
+                        </Item>
                         <Item stackedLabel>
                             <Label>Username</Label>
                             <Input autoCapitalize='none' autoCorrect={false} />
