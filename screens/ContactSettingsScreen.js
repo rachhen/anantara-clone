@@ -5,19 +5,16 @@ import {
     StyleSheet
 } from "react-native";
 
-class MessagesScreen extends Component {
-    static navigationOptions = {
-        headerTitle: 'Messages'
-    }
+class ContactSettingsScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>No Messages</Text>
+                <Text>ContactSettingsScreen</Text>
             </View>
         );
     }
 }
-export default MessagesScreen;
+export default ContactSettingsScreen;
 
 const styles = StyleSheet.create({
     container: {

@@ -12,7 +12,8 @@ class PastStaysScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>PastStaysScreen</Text>
+                <Text style={{ fontWeight: 'bold' }}>No Past stays</Text>
+                <Text>You haven't got any past hotel booking yet.</Text>
             </View>
         );
     }

@@ -14,11 +14,25 @@ import MyStaysScreen from './screens/MyStaysScreen';
 import PastStaysScreen from './screens/PastStaysScreen';
 import MessagesScreen from './screens/MessagesScreen';
 import SettingsScreen from './screens/SettingsScreen';
+import AccountSettingsScreen from './screens/AccountSettingsScreen';
+import ContactSettingsScreen from './screens/ContactSettingsScreen';
+import LoadingScreen from './screens/LoadingScreen';
+import firebase from 'firebase';
 
-class App extends React.Component {
+const config = {
+	apiKey: "AIzaSyBvbEmlsAZqas1wefQMbFQ2RFIhbukkFbg",
+	authDomain: "rachhen-authentication.firebaseapp.com",
+	databaseURL: "https://rachhen-authentication.firebaseio.com",
+	projectId: "rachhen-authentication",
+	storageBucket: "rachhen-authentication.appspot.com",
+	messagingSenderId: "45388045755"
+};
+firebase.initializeApp(config);
+
+export default class App extends React.Component {
 	render() {
 		return (
-			<appContainer />
+			<AppContainer />
 		);
 	}
 }
@@ -65,7 +79,7 @@ class IconWithBadge extends React.Component {
 
 const HomeIconWithBadge = props => {
 	// You should pass down the badgeCount in some other ways like context, redux, mobx or event emitters.
-	return <IconWithBadge {...props} badgeCount={3} />;
+	return <IconWithBadge {...props} badgeCount={9} />;
 };
 
 const getTabBarIcon = (navigation, focused, tintColor) => {
@@ -137,7 +151,9 @@ const messagesStack = createStackNavigator({
 	});
 
 const settingsStack = createStackNavigator({
-	SettingsStack: SettingsScreen
+	SettingsStack: SettingsScreen,
+	AccountSettings: AccountSettingsScreen,
+	ContactSettings: ContactSettingsScreen
 }, {
 		defaultNavigationOptions: {
 			headerStyle: {
@@ -161,18 +177,25 @@ const appBottomTabNavigator = createBottomTabNavigator({
 			activeTintColor: 'orange',
 			inactiveTintColor: 'gray',
 		},
+
 	});
 
 const appSwitchNavigator = createSwitchNavigator({
+	Loading: {
+		screen: LoadingScreen
+	},
 	Welcome: {
 		screen: appStackNavigator
 	},
 	Home: {
 		screen: appBottomTabNavigator
 	}
-});
+}, {
+		initialRouteName: 'Loading'
+	});
 
-export default createAppContainer(appSwitchNavigator)
+const AppContainer = createAppContainer(appSwitchNavigator)
+
 
 const styles = StyleSheet.create({
 	container: {
