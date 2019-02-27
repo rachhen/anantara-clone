@@ -78,7 +78,7 @@ class IconWithBadge extends React.Component {
 }
 
 const HomeIconWithBadge = props => {
-	// You should pass down the badgeCount in some other ways like context, redux, mobx or event emitters.
+	// You should pass down the badgeCount in some other ways like context, redux, 
 	return <IconWithBadge {...props} badgeCount={9} />;
 };
 
