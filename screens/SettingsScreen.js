@@ -13,9 +13,9 @@ class SettingsScreen extends Component {
     static navigationOptions = {
         headerTitle: 'Settings'
     }
-    constructor(props) {
-        super(props)
-        this.state = { count: 0 }
+
+    state = {
+        fullName: ''
     }
 
     onAccountPress = () => {
@@ -26,6 +26,19 @@ class SettingsScreen extends Component {
     }
     onLogoutPress = () => {
         firebase.auth().signOut();
+    }
+    componentDidMount() {
+        let self = this;
+        const { currentUser } = firebase.auth();
+
+        firebase.database().ref('users/' + currentUser.uid).once('value').then(function (snapshot) {
+            let updatedUser = snapshot.val();
+            console.log(updatedUser);
+            self.setState({ fullName: `${updatedUser.firstName} ${updatedUser.lastName}` });
+        }).catch((err) => {
+            console.log(err);
+
+        });
     }
     render() {
         return (
@@ -43,7 +56,7 @@ class SettingsScreen extends Component {
                                     <Text style={{ marginLeft: 10 }}>Account</Text>
                                 </View>
                                 <View style={{ flexDirection: 'row', position: 'absolute', right: 0 }}>
-                                    <Text style={{ marginRight: 10 }}>Rachhen Dev</Text>
+                                    <Text style={{ marginRight: 10 }}>{this.state.fullName}</Text>
                                     <Icon name="ios-arrow-forward" size={20} />
                                 </View>
                             </View>
